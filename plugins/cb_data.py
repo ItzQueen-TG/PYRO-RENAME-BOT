@@ -66,7 +66,7 @@ async def doc(bot, msg):
              await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
              return 
      else:
-         caption = f"`{new_name}`"
+         cap = f"`{new_name}`"
      raw_thumbnail = temp.THUMBNAIL 
      if raw_thumbnail:
         og_thumbnail = await bot.download_media(raw_thumbnail)
