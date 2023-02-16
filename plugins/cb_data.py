@@ -14,7 +14,7 @@ from config import temp
 CAPTION = os.environ.get('CAPTION')
 T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
 F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
-FF_CHANNEL = int(os.environ.get("FF_CHANNEL", "-1001661692511"))
+R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
 
 
@@ -47,7 +47,7 @@ async def doc(bot, msg):
      new_name = filename
      file = msg.document or msg.video
      file_path = f"downloads/{new_name}"
-     sts = await bot.send_message(chat_id=T_CHANNEL, text=f"Trying to Download 📩\n\n`{new_name}`")
+     sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
      c_time = time.time()
      try:
      	path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
