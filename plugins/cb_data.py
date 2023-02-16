@@ -5,19 +5,17 @@ import time
 import humanize
 import asyncio
 
-from os import environ
+
 from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
+from config import temp
 
 CAPTION = os.environ.get('CAPTION')
 T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
 F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 FF_CHANNEL = int(os.environ.get("FF_CHANNEL", "-1001661692511"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
-
-class temp(object):
-    THUMBNAIL = os.environ.get("THUMBNAIL", "AgACAgUAAxkBAAL6aGPXFgiIpqBsaYT9FAP0K9M9zYl2AAKHszEb-x64VtN5kRGuhsBOAAgBAAMCAAN4AAceBA")
 
 
 @Client.on_message(filters.private & filters.command("set") & filters.user(ADMINS))                            
