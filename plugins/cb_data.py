@@ -19,6 +19,27 @@ class temp(object):
     THUMBNAIL = environ.get("THUMBNAIL", "AgACAgUAAxkBAAL6aGPXFgiIpqBsaYT9FAP0K9M9zYl2AAKHszEb-x64VtN5kRGuhsBOAAgBAAMCAAN4AAceBA")
 
 
+@Client.on_message(filters.private & filters.command("set") & filters.user(ADMINS))                            
+async def set_tumb(bot, msg):
+    replied = msg.reply_to_message
+    if not replied:
+        await msg.reply("use this command with Reply to a photo")
+        return
+    if not msg.reply_to_message.photo:
+       await msg.reply("Oops !! this is Not a photo")
+       return
+    Tumb = msg.reply_to_message.photo.file_id
+    temp.THUMBNAIL = Tumb
+    return await msg.reply(f"Temporary Thumbnail saved✅️ \nDo You want permanent thumbnail. \n\n`{Tumb}` \n\n👆👆 please add this id to your server enviro with key=`THUMBNAIL`")            
+
+
+@Client.on_message(filters.private & filters.command("view") & filters.user(ADMINS))                            
+async def del_tumb(bot, msg):
+    if temp.THUMBNAIL:
+        await msg.reply_photo(photo=temp.THUMBNAIL, caption="this is your current thumbnail")
+    else:
+        await msg.reply_text(text="you don't have any thumbnail")
+
 @Client.on_message(filters.chat(F_CHANNEL) & (filters.document | filters.video))
 async def doc(bot, msg):
      media = msg.document or msg.audio or msg.video
