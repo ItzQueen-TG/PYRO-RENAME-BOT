@@ -50,7 +50,7 @@ async def doc(bot, msg):
      sts = await bot.send_message(chat_id=T_CHANNEL, text=f"Trying to Download 📩\n\n`{new_name}`")
      c_time = time.time()
      try:
-     	path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"`{new_name}`", sts, c_time))
+     	path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
      except Exception as e:
      	await ms.edit(e)
      	return 
