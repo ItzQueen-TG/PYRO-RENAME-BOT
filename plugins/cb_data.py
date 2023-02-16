@@ -58,7 +58,7 @@ async def doc(bot, msg):
      dow_file_name = splitpath[1]
      old_file_name =f"downloads/{dow_file_name}"
      os.rename(old_file_name,file_path)
-     media = getattr(file, file.media.value)
+
      if CAPTION:
          try:
              caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
