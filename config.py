@@ -23,4 +23,4 @@ ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in os.envir
 PORT = os.environ.get('PORT', '8080')
 
 class temp(object):
-    THUMBNAIL = os.environ.get("THUMBNAIL", "AgACAgUAAxkBAAL6aGPXFgiIpqBsaYT9FAP0K9M9zYl2AAKHszEb-x64VtN5kRGuhsBOAAgBAAMCAAN4AAceBA")
+    THUMBNAIL = os.environ.get("THUMBNAIL", "AgACAgUAAxkBAAIGRWPuSgboGtGgMHO_IoVg-gtk5I76AAKHszEb-x64Vq2TKplEh60RAAgBAAMCAAN4AAceBA")
