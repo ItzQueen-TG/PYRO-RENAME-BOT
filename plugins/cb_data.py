@@ -18,7 +18,7 @@ FF_CHANNEL = int(os.environ.get("FF_CHANNEL", "-1001661692511"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
 
 
-@Client.on_message(filters.private & filters.command("set") & filters.user(ADMINS))                            
+@Client.on_message(filters.private & filters.command("set"))                        
 async def set_tumb(bot, msg):
     replied = msg.reply_to_message
     if not replied:
@@ -32,7 +32,7 @@ async def set_tumb(bot, msg):
     return await msg.reply(f"Temporary Thumbnail saved✅️ \nDo You want permanent thumbnail. \n\n`{Tumb}` \n\n👆👆 please add this id to your server enviro with key=`THUMBNAIL`")            
 
 
-@Client.on_message(filters.private & filters.command("view") & filters.user(ADMINS))                            
+@Client.on_message(filters.private & filters.command("view"))                         
 async def del_tumb(bot, msg):
     if temp.THUMBNAIL:
         await msg.reply_photo(photo=temp.THUMBNAIL, caption="this is your current thumbnail")
