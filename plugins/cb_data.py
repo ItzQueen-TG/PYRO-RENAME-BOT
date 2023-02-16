@@ -85,12 +85,14 @@ async def doc(bot, msg):
      except Exception as e:  
          await msg.copy(chat_id=T_CHANNEL, caption = cap)
          await sts.delete()
+         await msg.delete()
          return               
      try:
          os.remove(file_path)
          os.remove(og_thumbnail)
      except:
          pass
+     await msg.delete()
      await sts.delete()
 
 
