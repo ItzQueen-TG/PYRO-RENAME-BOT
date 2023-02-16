@@ -97,7 +97,7 @@ async def doc(bot, msg):
 async def progress_message(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
-    if round(diff % 6.00) == 0 or current == total:
+    if round(diff % 25.00) == 0 or current == total:
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
