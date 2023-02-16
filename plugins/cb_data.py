@@ -83,16 +83,16 @@ async def doc(bot, msg):
                    caption=cap,
                    progress=progress_message, 
                    progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
-    except Exception as e:  
-        await msg.copy(chat_id=T_CHANNEL, caption = cap)
-        await sts.delete()
-        return               
-    try:
-        os.remove(file_path)
-        os.remove(og_thumbnail)
-    except:
-        pass
-    await sts.delete()
+     except Exception as e:  
+         await msg.copy(chat_id=T_CHANNEL, caption = cap)
+         await sts.delete()
+         return               
+     try:
+         os.remove(file_path)
+         os.remove(og_thumbnail)
+     except:
+         pass
+     await sts.delete()
 
 
 async def progress_message(current, total, ud_type, message, start):
