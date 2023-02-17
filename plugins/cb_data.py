@@ -10,7 +10,7 @@ from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
 from config import temp
-from bot import User
+from main import User
 
 CAPTION = os.environ.get('CAPTION')
 T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
