@@ -46,7 +46,7 @@ class Bot(Client):
        
 
 if STRING:
-    apps = [User,bot]
+    apps = [User,Bot]
     for app in apps:
         app.start()
     idle()
