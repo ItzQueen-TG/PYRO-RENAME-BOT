@@ -28,7 +28,7 @@ if STRING:
     idle()
     for app in apps:
         app.stop()
-        print("bot Down💔)
+        print("bot Down💔")
 
 else:
     bot=Bot()
