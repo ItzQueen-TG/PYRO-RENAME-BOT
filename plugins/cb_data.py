@@ -62,7 +62,7 @@ async def doc(bot, msg):
      filename = og_media.file_name
      name = re.sub(r'\[CC\]\.*', '', filename)
      new_name = name
-     STATUS ="Downloading\n"
+     STATUS =+ "Downloading\n"
      STATUS += f"Trying to Download 📩\n`{new_name}`\n\n"
      file = msg.document or msg.video
      file_path = f"downloads/{new_name}"
