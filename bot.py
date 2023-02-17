@@ -24,12 +24,13 @@ if STRING:
     apps = [User,Bot]
     for app in apps:
         app.start()
-        me = await Bot.get_me()
-        print(f"{me.username} started ⚡")
+        print("userbot started ⚡")
     idle()
     for app in apps:
         app.stop()
+        print("bot Down💔)
 
 else:
     bot=Bot()
     bot.run()
+    print("bot started ⚡")
