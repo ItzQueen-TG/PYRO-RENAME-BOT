@@ -9,7 +9,7 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
-from config import temp
+from config import temp, ADMINS
 from bot import User
 
 CAPTION = os.environ.get('CAPTION')
@@ -17,6 +17,11 @@ T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
 F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
+
+STATUS =""
+STATUS += f"Trying to Download 📩\n\n`{new_name}`"
+
+MESSAGE_ID = int("5")
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
@@ -62,7 +67,7 @@ async def doc(bot, msg):
      new_name = name
      file = msg.document or msg.video
      file_path = f"downloads/{new_name}"
-     sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
+     sts = await bot.edit_message_text(chat_id=R_LOG, message_id=MESSAGE_ID, text=STATUS)
      c_time = time.time()
      try:
      	path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
