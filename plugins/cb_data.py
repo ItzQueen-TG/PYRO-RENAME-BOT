@@ -20,15 +20,21 @@ PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
+@User.on_message(filters.private)
+async def pm_reply(bot, msg):
+    a = await msg.reply_chat_action(enums.ChatAction.TYPING)
+    await asyncio.sleep(0.4)
+    b = await msg.reply_text("hy👀")
+
 @User.on_message(filters.chat(U_CHANNEL) & (filters.document | filters.video))
-async def autopost(bot, msg):
+async def autost(bot, msg):
     media = msg.document or msg.audio or msg.video
     og_media = getattr(msg, msg.media.value)
     filename = og_media.file_name
     new_name = filename
     cap = f"`{new_name}`"
     try:
-       copy = await msg.copy(chat_id=F_CHANNEL, caption = cap)
+       copy = await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
     except Exception as e:
        await print(f"{e}")
 
