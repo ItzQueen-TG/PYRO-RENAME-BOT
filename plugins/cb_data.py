@@ -27,7 +27,10 @@ async def autopost(bot, msg):
     filename = og_media.file_name
     new_name = filename
     cap = f"`{new_name}`"
-    copy = await msg.copy(chat_id=F_CHANNEL, caption = cap)
+    try:
+       copy = await msg.copy(chat_id=F_CHANNEL, caption = cap)
+    except Exception as e:
+       await print(f"{e}")
 
 @Client.on_message(filters.private & filters.command("set"))                        
 async def set_tumb(bot, msg):
@@ -55,7 +58,8 @@ async def doc(bot, msg):
      media = msg.document or msg.audio or msg.video
      og_media = getattr(msg, msg.media.value)
      filename = og_media.file_name
-     new_name = filename
+     name = re.sub(r'\[CC\]\.*', '', filename)
+     new_name = name
      file = msg.document or msg.video
      file_path = f"downloads/{new_name}"
      sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
