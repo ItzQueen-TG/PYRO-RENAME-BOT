@@ -25,7 +25,7 @@ if STRING:
     for app in apps:
         app.start()
         me = await Bot.get_me()
-        print(f"{me.username} started ⚡)
+        print(f"{me.username} started ⚡")
     idle()
     for app in apps:
         app.stop()
