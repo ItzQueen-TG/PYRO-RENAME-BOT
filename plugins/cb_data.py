@@ -10,6 +10,7 @@ from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
 from config import temp
+from bot import User
 
 CAPTION = os.environ.get('CAPTION')
 T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
@@ -17,6 +18,9 @@ F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
 
+U_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001815935001"))
+
+@User.on_message(filters.chat(logg_channel))
 
 @Client.on_message(filters.private & filters.command("set"))                        
 async def set_tumb(bot, msg):
