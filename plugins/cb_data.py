@@ -9,7 +9,7 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
-from config import temp, ADMINS
+from config import temp
 from bot import User
 
 CAPTION = os.environ.get('CAPTION')
@@ -17,8 +17,6 @@ T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
 F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
-
-MESSAGE_ID = int("3659")
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
@@ -62,11 +60,9 @@ async def doc(bot, msg):
      filename = og_media.file_name
      name = re.sub(r'\[CC\]\.*', '', filename)
      new_name = name
-     STATUS +="Downloading\n"
-     STATUS += f"Trying to Download 📩\n`{new_name}`\n\n"
      file = msg.document or msg.video
      file_path = f"downloads/{new_name}"
-     sts = await bot.edit_message_text(chat_id=F_CHANNEL, message_id=MESSAGE_ID, text=STATUS)
+     sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
      c_time = time.time()
      try:
      	path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
@@ -103,6 +99,8 @@ async def doc(bot, msg):
                    progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
      except Exception as e:  
          await msg.copy(chat_id=T_CHANNEL, caption = cap)
+         await sts.delete()
+         await msg.delete()
          return               
      try:
          os.remove(file_path)
@@ -110,6 +108,7 @@ async def doc(bot, msg):
      except:
          pass
      await msg.delete()
+     await sts.delete()
 
 
 async def progress_message(current, total, ud_type, message, start):
@@ -124,8 +123,8 @@ async def progress_message(current, total, ud_type, message, start):
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)                                    
         progress = "\n{0}{1}".format(
-            ''.join(["⬢" for i in range(math.floor(percentage / 5))]),
-            ''.join(["⬡" for i in range(20 - math.floor(percentage / 5))]))                                  
+            ''.join(["■" for i in range(math.floor(percentage / 5))]),
+            ''.join(["□" for i in range(20 - math.floor(percentage / 5))]))                                  
         tmp = progress + PROGRESS_BAR.format(
             a=round(percentage, 2),
             b=humanbytes(current),
