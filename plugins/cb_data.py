@@ -18,7 +18,7 @@ F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
 
-MESSAGE_ID = int("3643")
+MESSAGE_ID = int("3655")
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
@@ -62,8 +62,8 @@ async def doc(bot, msg):
      filename = og_media.file_name
      name = re.sub(r'\[CC\]\.*', '', filename)
      new_name = name
-     STATUS =""
-     STATUS += f"Trying to Download 📩\n\n`{new_name}`"
+     STATUS ="Downloading\n"
+     STATUS += f"Trying to Download 📩\n`{new_name}`\n\n"
      file = msg.document or msg.video
      file_path = f"downloads/{new_name}"
      sts = await bot.edit_message_text(chat_id=F_CHANNEL, message_id=MESSAGE_ID, text=STATUS)
