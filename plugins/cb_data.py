@@ -30,7 +30,7 @@ async def autopost(bot, msg):
     try:
        copy = await msg.copy(chat_id=F_CHANNEL, caption = cap)
     except Exception as e:
-       await print(f"{e})
+       await print(f"{e}")
 
 @Client.on_message(filters.private & filters.command("set"))                        
 async def set_tumb(bot, msg):
