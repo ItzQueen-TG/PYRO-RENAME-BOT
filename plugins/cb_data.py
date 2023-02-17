@@ -6,7 +6,7 @@ import humanize
 import asyncio
 
 
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
 from config import temp
