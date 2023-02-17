@@ -1,7 +1,10 @@
-from pyrogram import Client 
-from config import API_ID, API_HASH, BOT_TOKEN, FORCE_SUB, PORT
+from pyrogram import Client, compose, idle
+from config import API_ID, API_HASH, BOT_TOKEN, STRING, PORT
 from aiohttp import web
 from route import web_server
+
+User = Client("test", api_id=API_ID, api_hash=API_HASH, session_string=STRING)
+
 
 class Bot(Client):
 
@@ -41,6 +44,14 @@ class Bot(Client):
         await super().stop()      
         print("Bot Stopped")
        
+
+if STRING:
+    apps = User
+    for app in apps:
+        app.start()
+    idle()
+    for app in apps:
+        app.stop()
 
 bot=Bot()
 bot.run()
