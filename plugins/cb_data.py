@@ -18,7 +18,7 @@ F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
 
-MESSAGE_ID = int("3655")
+MESSAGE_ID = int("3659")
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
@@ -103,8 +103,6 @@ async def doc(bot, msg):
                    progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
      except Exception as e:  
          await msg.copy(chat_id=T_CHANNEL, caption = cap)
-         await sts.delete()
-         await msg.delete()
          return               
      try:
          os.remove(file_path)
@@ -112,7 +110,6 @@ async def doc(bot, msg):
      except:
          pass
      await msg.delete()
-     await sts.delete()
 
 
 async def progress_message(current, total, ud_type, message, start):
