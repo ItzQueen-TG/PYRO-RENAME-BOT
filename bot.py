@@ -2,13 +2,7 @@ from pyrogram import Client, compose, idle
 from config import API_ID, API_HASH, BOT_TOKEN, STRING, PORT
 from aiohttp import web
 from route import web_server
-
-User = Client(
-        "test", 
-        api_id=API_ID, 
-        api_hash=API_HASH, 
-        session_string=STRING)
-
+from main import User
 
 Bot = Client(
         "Renamer",
