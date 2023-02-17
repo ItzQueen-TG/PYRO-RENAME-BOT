@@ -10,7 +10,7 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 
 STRING = os.environ.get("STRING", "")
 
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '5195423974').split()]
 
 PORT = os.environ.get('PORT', '8080')
 
