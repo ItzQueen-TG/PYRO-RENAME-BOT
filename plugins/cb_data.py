@@ -56,7 +56,8 @@ async def doc(bot, msg):
      og_media = getattr(msg, msg.media.value)
      filename = og_media.file_name
      name = re.sub(r'[\[\]@CC]', '', filename)
-     new_name = name
+     result = re.sub(r'\.', '', name)
+     new_name = result
      file = msg.document or msg.video
      file_path = f"downloads/{new_name}"
      sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
