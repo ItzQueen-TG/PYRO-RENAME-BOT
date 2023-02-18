@@ -23,11 +23,6 @@ U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
 logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
 
-@User.on_message(filters.private)
-async def pm_reply(bot, msg):
-    a = await msg.reply_chat_action(enums.ChatAction.TYPING)
-    await asyncio.sleep(0.4)
-    b = await msg.reply_text("hy👀")
 
 @User.on_message(filters.chat(logg_channel))
 async def rename_file(bot, msg):
