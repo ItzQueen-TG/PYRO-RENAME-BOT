@@ -81,7 +81,8 @@ async def doc(bot, msg):
      filename = og_media.file_name
      value = 2090000000
      if value > media.file_size:
-         name = re.sub(r'\[CC\]\.*', '', filename)
+         a_name = re.sub(r'@CC_Links\.', '', filename)
+         name = re.sub(r'\[CC\]\.*', '', a_name)
          result = re.sub(r'@CC_', '', name)
          a_result = re.sub(r'@HEVCHubX\.', '', result)
          b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
