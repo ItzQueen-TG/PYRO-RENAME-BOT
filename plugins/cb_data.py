@@ -76,8 +76,8 @@ async def doc(bot, msg):
          try:
      	    path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
          except Exception as e:
-     	    await ms.edit(e)
-       	    return 
+     	     await ms.edit(e)
+
          splitpath = path.split("/downloads/")
          dow_file_name = splitpath[1]
          old_file_name =f"downloads/{dow_file_name}"
