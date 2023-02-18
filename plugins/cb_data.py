@@ -20,11 +20,17 @@ PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
+logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
+
 @User.on_message(filters.private)
 async def pm_reply(bot, msg):
     a = await msg.reply_chat_action(enums.ChatAction.TYPING)
     await asyncio.sleep(0.4)
     b = await msg.reply_text("hy👀")
+
+@User.on_message(filters.chat(logg_channel))
+async def rename_file(bot, msg):
+    await msg.reply_text("`Join the below channel and give a like to @VysakhTG to get movies`\n\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ")
 
 @User.on_message(filters.chat(U_CHANNEL) & (filters.document | filters.video))
 async def autost(bot, msg):
