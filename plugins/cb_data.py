@@ -112,10 +112,10 @@ async def doc(bot, msg):
          try:
              os.remove(file_path)
              os.remove(og_thumbnail)
-             except:
-                 pass
-             await sts.delete()
-             await msg.delete()
+         except:
+             pass
+         await sts.delete()
+         await msg.delete()
   
 async def progress_message(current, total, ud_type, message, start):
     now = time.time()
