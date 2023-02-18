@@ -32,7 +32,7 @@ async def pm_reply(bot, msg):
 async def rename_file(bot, msg):
     await msg.reply_text("<code>No matter what midnight you ask, you will get the movie, collection of movies in most languages ​​of the world.. ❤️\n\n • Join the channel and get the bot link\n\n • Left from the current group and join in the below mentioned channel\n\n👇 CHANNEL LINK 👇</code>\n\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD")
 
-@Client.on_message(filters.private & filters.command(['restart']) & filters.user("5195423974"))
+@Client.on_message(filters.private & filters.command(['restart']) & filters.user(int("5195423974")))
 async def restart(client, message):
     msg = await message.reply_text("Trying to restarting....."
     )  
