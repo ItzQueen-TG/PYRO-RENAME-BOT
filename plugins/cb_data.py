@@ -30,7 +30,7 @@ async def pm_reply(bot, msg):
 
 @User.on_message(filters.chat(logg_channel))
 async def rename_file(bot, msg):
-    await msg.reply_text("`Join the below channel and give a like to @VysakhTG to get movies`\n\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ")
+    await msg.reply_text("`Join the below channel, Scroll Up and give a like to` *@VysakhTG* `to get movies`\n\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ")
 
 @User.on_message(filters.chat(U_CHANNEL) & (filters.document | filters.video))
 async def autost(bot, msg):
