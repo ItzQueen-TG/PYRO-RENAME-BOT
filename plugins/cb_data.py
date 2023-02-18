@@ -64,64 +64,63 @@ async def doc(bot, msg):
      media = msg.document or msg.audio or msg.video
      og_media = getattr(msg, msg.media.value)
      filename = og_media.file_name
-     name = re.sub(r'\[CC\]\.*', '', filename)
-     result = re.sub(r'@CC_', '', name)
-     new_name = result
-     file = msg.document or msg.video
-     file_path = f"downloads/{new_name}"
-     sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
-     c_time = time.time()
-     try:
-     	path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
-     except Exception as e:
-     	await ms.edit(e)
-     	return 
-     splitpath = path.split("/downloads/")
-     dow_file_name = splitpath[1]
-     old_file_name =f"downloads/{dow_file_name}"
-     os.rename(old_file_name,file_path)
-
-     if CAPTION:
+     value = 2090000000
+     if value > media.file_size:
+         name = re.sub(r'\[CC\]\.*', '', filename)
+         result = re.sub(r'@CC_', '', name)
+         new_name = result
+         file = msg.document or msg.video
+         file_path = f"downloads/{new_name}"
+         sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
+         c_time = time.time()
          try:
-             caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
+     	    path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
          except Exception as e:
-             await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
-             return 
-     else:
-         cap = f"`{new_name}`"
-     raw_thumbnail = temp.THUMBNAIL 
-     if raw_thumbnail:
-        og_thumbnail = await bot.download_media(raw_thumbnail)
-     else:
-         og_thumbnail = await bot.download_media(og_media.thumbs[0].file_id)
-     await sts.edit(f"Trying to Uploading\n`{new_name}`")
-     c_time = time.time()
-     try:
-         await bot.send_document(
-                   T_CHANNEL, 
-                   document=file_path,
-                   thumb=og_thumbnail, 
-                   caption=cap,
-                   progress=progress_message, 
-                   progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
-     except Exception as e:  
-         await msg.copy(chat_id=T_CHANNEL, caption = cap)
-         await sts.delete()
-         await msg.delete()
-         return               
-     try:
-         os.remove(file_path)
-         os.remove(og_thumbnail)
-     except:
-         pass
-     await msg.delete()
-     await sts.delete()
-
-
+     	    await ms.edit(e)
+       	    return 
+         splitpath = path.split("/downloads/")
+         dow_file_name = splitpath[1]
+         old_file_name =f"downloads/{dow_file_name}"
+         os.rename(old_file_name,file_path)
+         if CAPTION:
+             try:
+                 caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
+             except Exception as e:
+                 await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
+                 return 
+         else:
+             cap = f"`{new_name}`"
+         raw_thumbnail = temp.THUMBNAIL 
+         if raw_thumbnail:
+            og_thumbnail = await bot.download_media(raw_thumbnail)
+         else:
+             og_thumbnail = await bot.download_media(og_media.thumbs[0].file_id)
+         await sts.edit(f"Trying to Uploading\n`{new_name}`")
+         c_time = time.time()
+         try:
+             await bot.send_document(
+                       T_CHANNEL, 
+                       document=file_path,
+                       thumb=og_thumbnail, 
+                       caption=cap,
+                       progress=progress_message, 
+                       progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
+         except Exception as e:  
+             print("f{e}")
+             await sts.delete()
+             return               
+         try:
+             os.remove(file_path)
+             os.remove(og_thumbnail)
+             except:
+                 pass
+             await sts.delete()
+             await msg.delete()
+  
 async def progress_message(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
-    if round(diff % 36.00) == 0 or current == total:
+    if round(diff % 60.00) == 0 or current == total:
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
