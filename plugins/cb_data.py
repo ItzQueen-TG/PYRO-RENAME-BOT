@@ -86,7 +86,7 @@ async def doc(bot, msg):
          e_result = re.sub(r"\[", "", d_result)
          new_name = e_result
          file = msg.document or msg.video
-         file_path = f"downloads/{new_name}#{media.file_size}"
+         file_path = f"downloads/{new_name}"
          sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
          c_time = time.time()
          try:
@@ -96,7 +96,7 @@ async def doc(bot, msg):
 
          splitpath = path.split(f"/downloads/")
          dow_file_name = splitpath[1]
-         old_file_name =f"downloads/{dow_file_name}#{media.file_size}"
+         old_file_name =f"downloads/{dow_file_name}"
          os.rename(old_file_name,file_path)
          if CAPTION:
              try:
