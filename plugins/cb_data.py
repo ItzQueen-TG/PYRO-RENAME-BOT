@@ -82,7 +82,9 @@ async def doc(bot, msg):
          a_result = re.sub(r'@HEVCHubX\.', '', result)
          b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
          c_result = re.sub(r'@\w+', '', b_result)
-         new_name = c_result
+         d_result = re.sub(r"\]", "", c_result)
+         e_result = re.sub(r"\[", "", d_result)
+         new_name = e_result
          file = msg.document or msg.video
          file_path = f"downloads/{new_name}"
          sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
