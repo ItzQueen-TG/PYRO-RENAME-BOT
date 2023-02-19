@@ -2,6 +2,7 @@ import re
 import os 
 import math
 import time
+import sys
 import humanize
 import asyncio
 
@@ -22,15 +23,18 @@ U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
 logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
 
-@User.on_message(filters.private)
-async def pm_reply(bot, msg):
-    a = await msg.reply_chat_action(enums.ChatAction.TYPING)
-    await asyncio.sleep(0.4)
-    b = await msg.reply_text("hy👀")
 
 @User.on_message(filters.chat(logg_channel))
 async def rename_file(bot, msg):
-    await msg.reply_text("`Join the below channel and give a like to @VysakhTG to get movies`\n\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ\n@UltimateLeakZ")
+    await msg.reply_text("<code>No matter what midnight you ask, you will get the movie, collection of movies in most languages ​​of the world.. ❤️\n\n • Join the channel and get the bot link\n\n • Left from the current group and join in the below mentioned channel\n\n👇 CHANNEL LINK 👇</code>\n\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD")
+
+@Client.on_message(filters.private & filters.command(['restart']) & filters.user(int("5195423974")))
+async def restart(client, message):
+    msg = await message.reply_text("Trying to restarting....."
+    )  
+    await asyncio.sleep(1)
+    await msg.edit("<i>Server restarted successfully ✅</i>")
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 @User.on_message(filters.chat(U_CHANNEL) & (filters.document | filters.video))
 async def autost(bot, msg):
@@ -72,9 +76,16 @@ async def doc(bot, msg):
      filename = og_media.file_name
      value = 2090000000
      if value > media.file_size:
-         name = re.sub(r'\[CC\]\.*', '', filename)
+         a_name = re.sub(r'@CC_Links\.', '', filename)
+         name = re.sub(r'\[CC\]\.*', '', a_name)
          result = re.sub(r'@CC_', '', name)
-         new_name = result
+         a_result = re.sub(r'@HEVCHubX\.', '', result)
+         b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
+         w_result = re.sub(r'@WMR_\s*', '', b_result)
+         c_result = re.sub(r'@\w+', '', w_result)
+         d_result = re.sub(r"\]", "", c_result)
+         e_result = re.sub(r"\[", "", d_result)
+         new_name = e_result
          file = msg.document or msg.video
          file_path = f"downloads/{new_name}"
          sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
@@ -84,7 +95,7 @@ async def doc(bot, msg):
          except Exception as e:
      	     await ms.edit(e)
 
-         splitpath = path.split("/downloads/")
+         splitpath = path.split(f"/downloads/")
          dow_file_name = splitpath[1]
          old_file_name =f"downloads/{dow_file_name}"
          os.rename(old_file_name,file_path)
@@ -126,7 +137,7 @@ async def doc(bot, msg):
 async def progress_message(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
-    if round(diff % 60.00) == 0 or current == total:
+    if round(diff % 35.00) == 0 or current == total:
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
