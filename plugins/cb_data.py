@@ -86,7 +86,7 @@ async def doc(bot, msg):
          e_result = re.sub(r"\[", "", d_result)
          new_name = e_result
          file = msg.document or msg.video
-         file_path = f"downloads#{media.file_size}/{new_name}"
+         file_path = f"downloads/{new_name}"
          sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
          c_time = time.time()
          try:
