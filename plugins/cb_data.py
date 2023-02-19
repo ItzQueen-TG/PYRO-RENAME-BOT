@@ -81,7 +81,8 @@ async def doc(bot, msg):
          result = re.sub(r'@CC_', '', name)
          a_result = re.sub(r'@HEVCHubX\.', '', result)
          b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
-         c_result = re.sub(r'@\w+', '', b_result)
+         w_result = re.sub(r'@WMR_\s*', '', b_result)
+         c_result = re.sub(r'@\w+', '', w_result)
          d_result = re.sub(r"\]", "", c_result)
          e_result = re.sub(r"\[", "", d_result)
          new_name = e_result
