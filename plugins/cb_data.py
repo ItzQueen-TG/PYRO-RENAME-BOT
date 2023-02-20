@@ -79,7 +79,7 @@ async def doc(bot, msg):
      value = 2090000000
      fv = 1
      if value > media.file_size:
-         if fv < temp.FLOOD:
+         if temp.FLOOD >fv:
              FLOOD = 15
              temp.FLOOD = temp.FLOOD + FLOOD
              value = 2090000000
