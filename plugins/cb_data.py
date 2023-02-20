@@ -136,6 +136,7 @@ async def doc(bot, msg):
              except Exception as e:  
                  print("f{e}")
                  await sts.delete()
+                 temp.FLOOD = temp.FLOOD - FLOOD
                  return               
              try:
                  os.remove(file_path)
@@ -143,12 +144,13 @@ async def doc(bot, msg):
              except:
                  pass
              await sts.delete()
+             temp.FLOOD = temp.FLOOD - FLOOD
              await msg.delete()
   
 async def progress_message(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
-    if round(diff % 35.00) == 0 or current == total:
+    if round(diff % 10.00) == 0 or current == total:
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
