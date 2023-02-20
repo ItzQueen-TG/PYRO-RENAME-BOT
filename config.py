@@ -16,3 +16,4 @@ PORT = os.environ.get('PORT', '8080')
 
 class temp(object):
     THUMBNAIL = os.environ.get("THUMBNAIL", "AgACAgUAAxkBAAIGY2PxrdHf86bVdjXoK6TZO3ebHAKIAAK7tDEb8R6RVyZyHhBOaA3gAAgBAAMCAAN5AAceBA")
+    FLOOD = os.environ.get("FLOOD", "5"
