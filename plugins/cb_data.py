@@ -77,8 +77,9 @@ async def doc(bot, msg):
      og_media = getattr(msg, msg.media.value)
      filename = og_media.file_name
      value = 2090000000
+     fv = 1
      if value > media.file_size:
-         if 1 < temp.FLOOD:
+         if fv < temp.FLOOD:
              FLOOD = 15
              temp.FLOOD = temp.FLOOD + FLOOD
              value = 2090000000
