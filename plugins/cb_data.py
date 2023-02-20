@@ -5,7 +5,8 @@ import time
 import sys
 import humanize
 import asyncio
-
+import datetime
+import pytz
 
 from pyrogram import Client, filters, enums
 from pyrogram.types import *
@@ -13,16 +14,19 @@ from pyrogram.errors import FloodWait
 from config import temp
 from main import User
 
+currentTime = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
+last_update = currentTime.strftime(f"%I:%M:%S %p")
+
+
 CAPTION = os.environ.get('CAPTION')
 T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
 F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
-PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}"
+PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- {last_update}"
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
 logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
-
 
 @User.on_message(filters.chat(logg_channel))
 async def rename_file(bot, msg):
