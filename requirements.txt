@@ -8,3 +8,4 @@ TgCrypto
 dnspython
 aiohttp 
 datetime
+pytz==2021.3
