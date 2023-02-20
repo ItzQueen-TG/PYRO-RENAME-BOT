@@ -126,7 +126,7 @@ async def doc(bot, msg):
                        progress=progress_message, 
                        progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
          except Exception as e:  
-             print("f{e}")
+             print(e)
              await sts.delete()
              return               
          try:
