@@ -3,6 +3,7 @@ from config import API_ID, API_HASH, BOT_TOKEN, STRING, PORT
 from aiohttp import web
 from route import web_server
 from main import User
+from plugins.cb_data import R_LOG
 
 Bot = Client(
         "Renamer",
@@ -18,7 +19,7 @@ if STRING:
     apps = [User,Bot]
     for app in apps:
         app.start()
-        print("userbot started ⚡")
+        log = await Bot.send_message(LOG_CHANNEL, text="๏[-ิ_•ิ]๏ bot and user restarted !")
     idle()
     for app in apps:
         app.stop()
@@ -27,4 +28,4 @@ if STRING:
 else:
     bot=Bot()
     bot.run()
-    print("bot started ⚡")
+    log = await Bot.send_message(LOG_CHANNEL, text="๏[-ิ_•ิ]๏ bot restarted !")
