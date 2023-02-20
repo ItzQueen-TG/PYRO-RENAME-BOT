@@ -80,7 +80,7 @@ async def doc(bot, msg):
      fv = 1
      if value > media.file_size:
          if temp.FLOOD >fv:
-             FLOOD = 5
+             FLOOD = 2
              temp.FLOOD = temp.FLOOD + FLOOD
              value = 2090000000
              await asyncio.sleep(temp.FLOOD)
@@ -150,7 +150,7 @@ async def doc(bot, msg):
 async def progress_message(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
-    if round(diff % 10.00) == 0 or current == total:
+    if round(diff % 7.00) == 0 or current == total:
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
