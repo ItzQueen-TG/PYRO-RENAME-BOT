@@ -105,44 +105,44 @@ async def doc(bot, msg):
              except Exception as e:
      	        await ms.edit(e)
 
-             splitpath = path.split(f"/downloads/")
-             dow_file_name = splitpath[1]
-             old_file_name =f"downloads/{dow_file_name}"
-             os.rename(old_file_name,file_path)
-             if CAPTION:
-                 try:
-                     caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
-                 except Exception as e:
-                     await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
-                     return 
-         else:
-             cap = f"`{new_name}`"
-         raw_thumbnail = temp.THUMBNAIL 
-         if raw_thumbnail:
-            og_thumbnail = await bot.download_media(raw_thumbnail)
-         else:
-             og_thumbnail = await bot.download_media(og_media.thumbs[0].file_id)
-         await sts.edit(f"Trying to Uploading\n`{new_name}`")
-         c_time = time.time()
-         try:
-             await bot.send_document(
-                       T_CHANNEL, 
-                       document=file_path,
-                       thumb=og_thumbnail, 
-                       caption=cap,
-                       progress=progress_message, 
-                       progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
-         except Exception as e:  
-             print("f{e}")
-             await sts.delete()
-             return               
-         try:
-             os.remove(file_path)
-             os.remove(og_thumbnail)
-         except:
-             pass
-         await sts.delete()
-         await msg.delete()
+                splitpath = path.split(f"/downloads/")
+                dow_file_name = splitpath[1]
+                old_file_name =f"downloads/{dow_file_name}"
+                os.rename(old_file_name,file_path)
+                if CAPTION:
+                    try:
+                        caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
+                    except Exception as e:
+                        await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
+                        return 
+                else:
+                    cap = f"`{new_name}`"
+                raw_thumbnail = temp.THUMBNAIL 
+                if raw_thumbnail:
+                og_thumbnail = await bot.download_media(raw_thumbnail)
+                else:
+                og_thumbnail = await bot.download_media(og_media.thumbs[0].file_id)
+                await sts.edit(f"Trying to Uploading\n`{new_name}`")
+                c_time = time.time()
+                try:
+                    await bot.send_document(
+                              T_CHANNEL, 
+                              document=file_path,
+                              thumb=og_thumbnail, 
+                              caption=cap,
+                              progress=progress_message, 
+                              progress_args=(f"Uploading 📤\n\n`{new_name}`", sts, c_time))
+                except Exception as e:  
+                    print("f{e}")
+                    await sts.delete()
+                    return               
+                try:
+                    os.remove(file_path)
+                    os.remove(og_thumbnail)
+                except:
+                    pass
+                    await sts.delete()
+                    await msg.delete()
   
 async def progress_message(current, total, ud_type, message, start):
     now = time.time()
