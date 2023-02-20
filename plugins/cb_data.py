@@ -22,7 +22,7 @@ CAPTION = os.environ.get('CAPTION')
 T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
 F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
 R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
-PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- {last_update}"
+PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- {g}"
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
@@ -160,7 +160,8 @@ async def progress_message(current, total, ud_type, message, start):
             b=humanbytes(current),
             c=humanbytes(total),
             d=humanbytes(speed),
-            f=estimated_total_time if estimated_total_time != '' else "0 s")                               
+            f=estimated_total_time if estimated_total_time != '' else "0 s",
+            g=last_update)                        
         try:
             await message.edit(text="{}\n{}".format(ud_type, tmp))         
         except:
