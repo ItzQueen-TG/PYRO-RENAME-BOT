@@ -80,7 +80,7 @@ async def doc(bot, msg):
      fv = 1
      if value > media.file_size:
          if temp.FLOOD >fv:
-             FLOOD = 15
+             FLOOD = 5
              temp.FLOOD = temp.FLOOD + FLOOD
              value = 2090000000
              await asyncio.sleep(temp.FLOOD)
@@ -91,12 +91,12 @@ async def doc(bot, msg):
              b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
              w_result = re.sub(r'@WMR_\s*', '', b_result)
              c_result = re.sub(r'@\w+', '', w_result)
-             p_result = re.sub(r'\[PFM\]\.', '', c_result)
-             m_result = re.sub(r'\[MM\]', '', p_result)
-             d_result = re.sub(r"\]", "", m_result)
+             s_result = re.sub(r'\s', '.', c_result)
+             m_result = re.sub(r'\[MM\]\.*', '', s_result)
+             p_result = re.sub(r'\[PFM\]\.', '', m_result)
+             d_result = re.sub(r"\]", "", p_result)
              e_result = re.sub(r"\[", "", d_result)
-             s_result = re.sub(r'\s', '', e_result)
-             new_name = s_result
+             new_name = e_result
              file = msg.document or msg.video
              file_path = f"downloads/{new_name}"
              sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
