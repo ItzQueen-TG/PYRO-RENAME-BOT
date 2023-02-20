@@ -105,7 +105,7 @@ async def doc(bot, msg):
              except Exception as e:
      	        await ms.edit(e)
 
-                splitpath = path.split(f"/downloads/")
+                splitpath = path.split("/downloads/")
                 dow_file_name = splitpath[1]
                 old_file_name =f"downloads/{dow_file_name}"
                 os.rename(old_file_name,file_path)
