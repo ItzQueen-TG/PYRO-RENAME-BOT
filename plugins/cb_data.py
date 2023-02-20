@@ -24,7 +24,7 @@ U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
 
 
-@User.on_message(filters.chat(logg_channel))
+@User.on_message(filters.private)
 async def rename_file(bot, msg):
     await msg.reply_text("<code>No matter what midnight you ask, you will get the movie, collection of movies in most languages ​​of the world.. ❤️\n\n • Join the channel and get the bot link\n\n • Left from the current group and join in the below mentioned channel\n\n👇 CHANNEL LINK 👇</code>\n\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD\n   @Vysakh_XD")
 
@@ -69,6 +69,8 @@ async def del_tumb(bot, msg):
     else:
         await msg.reply_text(text="you don't have any thumbnail")
 
+
+
 @Client.on_message(filters.chat(F_CHANNEL) & (filters.document | filters.video))
 async def doc(bot, msg):
      media = msg.document or msg.audio or msg.video
@@ -76,35 +78,43 @@ async def doc(bot, msg):
      filename = og_media.file_name
      value = 2090000000
      if value > media.file_size:
-         a_name = re.sub(r'@CC_Links\.', '', filename)
-         name = re.sub(r'\[CC\]\.*', '', a_name)
-         result = re.sub(r'@CC_', '', name)
-         a_result = re.sub(r'@HEVCHubX\.', '', result)
-         b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
-         w_result = re.sub(r'@WMR_\s*', '', b_result)
-         c_result = re.sub(r'@\w+', '', w_result)
-         d_result = re.sub(r"\]", "", c_result)
-         e_result = re.sub(r"\[", "", d_result)
-         new_name = e_result
-         file = msg.document or msg.video
-         file_path = f"downloads/{new_name}"
-         sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
-         c_time = time.time()
-         try:
-     	    path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
-         except Exception as e:
-     	     await ms.edit(e)
-
-         splitpath = path.split(f"/downloads/")
-         dow_file_name = splitpath[1]
-         old_file_name =f"downloads/{dow_file_name}"
-         os.rename(old_file_name,file_path)
-         if CAPTION:
+         if 1 < temp.FLOOD
+             FLOOD = 15
+             temp.FLOOD = temp.FLOOD + FLOOD
+             value = 2090000000
+             await asyncio.sleep(temp.FLOOD)
+             a_name = re.sub(r'@CC_Links\.', '', filename)
+             name = re.sub(r'\[CC\]\.*', '', a_name)
+             result = re.sub(r'@CC_', '', name)
+             a_result = re.sub(r'@HEVCHubX\.', '', result)
+             b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
+             w_result = re.sub(r'@WMR_\s*', '', b_result)
+             c_result = re.sub(r'@\w+', '', w_result)
+             p_result = re.sub(r'\[PFM\]\.', '', c_result)
+             m_result = re.sub(r'\[MM\]', '', p_result)
+             d_result = re.sub(r"\]", "", m_result)
+             e_result = re.sub(r"\[", "", d_result)
+             s_result = re.sub(r'\s', '', e_result)
+             new_name = s_result
+             file = msg.document or msg.video
+             file_path = f"downloads/{new_name}"
+             sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
+             c_time = time.time()
              try:
-                 caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
+     	        path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
              except Exception as e:
-                 await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
-                 return 
+     	        await ms.edit(e)
+
+             splitpath = path.split(f"/downloads/")
+             dow_file_name = splitpath[1]
+             old_file_name =f"downloads/{dow_file_name}"
+             os.rename(old_file_name,file_path)
+             if CAPTION:
+                 try:
+                     caption = c_caption.format(filename=new_filename, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
+                 except Exception as e:
+                     await sts.edit(text=f"Your caption Error unexpected keyword ●> ({e})")
+                     return 
          else:
              cap = f"`{new_name}`"
          raw_thumbnail = temp.THUMBNAIL 
