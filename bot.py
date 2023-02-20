@@ -19,7 +19,7 @@ if STRING:
     apps = [User,Bot]
     for app in apps:
         app.start()
-        log = await Bot.send_message(LOG_CHANNEL, text="๏[-ิ_•ิ]๏ bot and user restarted !")
+        print("๏[-ิ_•ิ]๏ bot and user restarted ! ⚡")
     idle()
     for app in apps:
         app.stop()
@@ -28,4 +28,4 @@ if STRING:
 else:
     bot=Bot()
     bot.run()
-    log = await Bot.send_message(LOG_CHANNEL, text="๏[-ิ_•ิ]๏ bot restarted !")
+    print("๏[-ิ_•ิ]๏ bot restarted ! ⚡")
