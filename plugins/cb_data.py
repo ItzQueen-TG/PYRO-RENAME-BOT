@@ -77,11 +77,11 @@ async def doc(bot, msg):
      og_media = getattr(msg, msg.media.value)
      filename = og_media.file_name
      value = 2090000000
-     fv = 1
+     fv = -1
      if value > media.file_size:
          if temp.FLOOD >fv:
-             FLOOD = 2
-             temp.FLOOD = temp.FLOOD + FLOOD
+             FLOD = 2
+             temp.FLOOD = temp.FLOOD + FLOD
              value = 2090000000
              await asyncio.sleep(temp.FLOOD)
              a_name = re.sub(r'@CC_Links\.', '', filename)
@@ -136,7 +136,7 @@ async def doc(bot, msg):
              except Exception as e:  
                  print("f{e}")
                  await sts.delete()
-                 temp.FLOOD = temp.FLOOD - FLOOD
+                 temp.FLOOD = temp.FLOOD - FLOD
                  return               
              try:
                  os.remove(file_path)
@@ -144,7 +144,7 @@ async def doc(bot, msg):
              except:
                  pass
              await sts.delete()
-             temp.FLOOD = temp.FLOOD - FLOOD
+             temp.FLOOD = temp.FLOOD - FLOD
              await msg.delete()
   
 async def progress_message(current, total, ud_type, message, start):
