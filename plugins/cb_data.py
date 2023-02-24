@@ -65,6 +65,7 @@ async def autost(bot, msg):
             s_time = status + 40
             await asyncio.sleep(s_time)
             await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
+        await asyncio.sleep(1)
         try:
             status.remove(40)
         except:
@@ -73,6 +74,31 @@ async def autost(bot, msg):
             status.remove(40)
         except:
             pass
+    except FloodWait as e:
+        await asyncio.sleep(e.x)
+        await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
+        await asyncio.sleep(1)
+        try:
+            status.add(40)
+        except:
+            pass
+        if 40 in status:
+            await asyncio.sleep(status)
+            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
+        else: 
+            s_time = status + 40
+            await asyncio.sleep(s_time)
+            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
+        await asyncio.sleep(1)
+        try:
+            status.remove(40)
+        except:
+            pass
+        try:
+            status.remove(40)
+        except:
+            pass
+
 
 @Client.on_message(filters.private & filters.command("set"))                        
 async def set_tumb(bot, msg):
