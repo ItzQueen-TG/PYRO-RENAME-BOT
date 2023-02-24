@@ -71,7 +71,7 @@ async def autost(bot, msg):
         except:
             pass
         try:
-            status.remove(40)
+            status.add(40)
         except:
             pass
     except FloodWait as e:
