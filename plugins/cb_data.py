@@ -40,6 +40,10 @@ async def restart(client, message):
     await msg.edit("<i>Server restarted successfully ✅</i>")
     os.execl(sys.executable, sys.executable, *sys.argv)
 
+
+BOT_STATUS = "0"
+status = set(int(x) for x in (BOT_STATUS).split())
+
 @User.on_message(filters.chat(U_CHANNEL) & (filters.document | filters.video))
 async def autost(bot, msg):
     media = msg.document or msg.audio or msg.video
@@ -47,10 +51,28 @@ async def autost(bot, msg):
     filename = og_media.file_name
     new_name = filename
     cap = f"`{new_name}`"
-    try:
-       copy = await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
-    except Exception as e:
-       await print(f"{e}")
+    try: 
+        await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
+        await asyncio.sleep(1)
+        try:
+            status.add(40)
+        except:
+            pass
+        if 40 in status:
+            await asyncio.sleep(status)
+            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
+        else: 
+            s_time = status + 40
+            await asyncio.sleep(s_time)
+            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
+        try:
+            status.remove(40)
+        except:
+            pass
+        try:
+            status.remove(40)
+        except:
+            pass
 
 @Client.on_message(filters.private & filters.command("set"))                        
 async def set_tumb(bot, msg):
