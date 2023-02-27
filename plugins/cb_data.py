@@ -137,7 +137,8 @@ async def doc(bot, msg):
          p_result = re.sub(r'\[PFM\]\.', '', m_result)
          d_result = re.sub(r"\]", "", p_result)
          e_result = re.sub(r"\[", "", d_result)
-         new_name = e_result
+         f_a= re.sub(r"\(|\)", "", e_result)
+         new_name = f_a
          file = msg.document or msg.video
          file_path = f"downloads/{new_name}"
          sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`")
