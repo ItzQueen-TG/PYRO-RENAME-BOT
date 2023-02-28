@@ -131,11 +131,12 @@ async def doc(bot, msg):
      filename = og_media.file_name
      value = 2090000000
      if value > media.file_size:
-         a_name = re.sub(r'@CC_Links\.', '', filename) # contribute some common words
+         gc = re.sub(r"\[GC\]\.", "", filename)
+         a_name = re.sub(r'@CC_Links\.', '', gc)
          name = re.sub(r'\[CC\]\.*', '', a_name)
          result = re.sub(r'@CC_', '', name)
          a_result = re.sub(r'@HEVCHubX\.', '', result)
-         b_result = re.sub(r'\[@Anime Clan\]', '', a_result)
+         b_result = re.sub(r'\[@Anime Clan\]\s*', '', a_result)
          w_result = re.sub(r'@WMR_\s*', '', b_result)
          c_result = re.sub(r'@\w+\s*', '', w_result)
          s_result = re.sub(r'\s', '.', c_result)
@@ -143,7 +144,8 @@ async def doc(bot, msg):
          p_result = re.sub(r'\[PFM\]\.', '', m_result)
          d_result = re.sub(r"\]", "", p_result)
          e_result = re.sub(r"\[", "", d_result)
-         new_name = e_result
+         f_a= re.sub(r"\(|\)", "", e_result)
+         new_name = f_a
          file = msg.document or msg.video
          file_path = f"downloads/{new_name}"
          currentTime = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
