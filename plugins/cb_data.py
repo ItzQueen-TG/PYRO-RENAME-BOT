@@ -28,7 +28,7 @@ U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 
 logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
 
-@Client.on_message(filters.private & filters.command(['restart']) & filters.user(int("5195423974")))
+@Client.on_message(filters.private & filters.command(['rrestart']) & filters.user(int("5195423974")))
 async def restart(client, message):
     msg = await message.reply_text("Trying to restarting....."
     )  
