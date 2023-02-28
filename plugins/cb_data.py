@@ -131,7 +131,8 @@ async def doc(bot, msg):
      filename = og_media.file_name
      value = 2090000000
      if value > media.file_size:
-         gc = re.sub(r"\[GC\]\.", "", filename)
+         svm = re.sub(r"\[SVM\]\.", "", filename)
+         gc = re.sub(r"\[GC\]\.", "", svm)
          a_name = re.sub(r'@CC_Links\.', '', gc)
          name = re.sub(r'\[CC\]\.*', '', a_name)
          result = re.sub(r'@CC_', '', name)
