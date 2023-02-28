@@ -199,7 +199,7 @@ async def doc(bot, msg):
          await msg.delete()
 
 
-def progress_message(current, total, start, message, ud_type):
+async def progress_message(current, total, start, message, ud_type):
     now = time.time()
     diff = now - start
     if round(diff % 15.00) == 0 or current == total:
