@@ -25,7 +25,7 @@ R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
 PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- {g}"
 
 U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
-
+ADMINS = int(5195423974)
 logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
 
 @Client.on_message(filters.private & filters.command(['rrestart']) & filters.user(int("5195423974")))
@@ -151,7 +151,7 @@ async def doc(bot, msg):
          file_path = f"downloads/{new_name}"
          currentTime = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
          last_update = currentTime.strftime(f"%I:%M:%S %p")
-         sts = await bot.send_message(chat_id=R_LOG, text=f"Trying to Download 📩\n\n`{new_name}`\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- `{last_update}`")
+         sts = await bot.send_message(chat_id=ADMINS, text=f"Trying to Download 📩\n\n`{new_name}`\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- `{last_update}`")
          c_time = time.time()
          try:
      	    path = await bot.download_media(message = file, progress=progress_message, progress_args=(f"Downloading 📩 `{new_name}`", sts, c_time))
