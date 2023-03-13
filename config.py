@@ -1,4 +1,4 @@
-import re, os
+Timport re, os
 
 id_pattern = re.compile(r'^.\d+$') 
 
@@ -15,6 +15,6 @@ ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in os.envi
 PORT = os.environ.get('PORT', '8080')
 
 class temp(object):
-    THUMBNAIL = os.environ.get("THUMBNAIL", "AgACAgUAAxkBAAIGY2PxrdHf86bVdjXoK6TZO3ebHAKIAAK7tDEb8R6RVyZyHhBOaA3gAAgBAAMCAAN5AAceBA")
+    THUMBNAIL = os.environ.get("THUMBNAIL", "AgACAgUAAxkBAAMRZA-xfSZ-8xjymkQ9MLbQ-n-YD68AAru0MRvxHpFX4TFG-GaxorAACAEAAwIAA3kABx4E")
     FLOOD = 0
 
