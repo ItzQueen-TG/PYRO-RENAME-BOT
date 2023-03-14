@@ -50,7 +50,7 @@ async def approve_join_requests(client, message):
  
     join = 0
     error = 0
-    members = Uset.get_chat_members(public_chat_id)
+    members = User.get_chat_members(public_chat_id)
     m = await client.send_message(chat_id=message.from_user.id, text="`processing...`")
     for member in members:
         try:
