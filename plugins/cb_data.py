@@ -8,6 +8,7 @@ import asyncio
 import datetime
 import pytz
 
+from pyromod import listen
 from pyrogram import Client, filters, enums
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
@@ -41,7 +42,7 @@ BOT_STATUS = "0"
 status = set(int(x) for x in (BOT_STATUS).split())
 
 @Client.on_message(filters.private & filters.command("add"))
-async def approve_join_requests(client: User, message):
+async def approve_join_requests(client, message):
     public_chat = await client.ask(message.from_user.id, "**❪ CHOOSE PUBLIC GROUP ❫**\n\nEnter the username of the public GROUP (e.g. @publicGROUP)")
     public_chat_id = (await client.get_chat(public_chat.text)).id
     target_chat = await client.ask(message.from_user.id, "**❪ CHOOSE TARGET GROUP ❫**\n\nEnter the username of the target channel (e.g. @myGROUP)")
@@ -49,11 +50,11 @@ async def approve_join_requests(client: User, message):
  
     join = 0
     error = 0
-    members = client.get_chat_members(public_chat_id)
+    members = Uset.get_chat_members(public_chat_id)
     m = await client.send_message(chat_id=message.from_user.id, text="`processing...`")
     for member in members:
         try:
-            client.add_chat_members(target_chat_id, member.user.id)
+            User.add_chat_members(target_chat_id, member.user.id)
             join += 1
             print(f"Approved join request for user {member.user.id}")
             await m.edit(f"{join}\n\n{error}")
