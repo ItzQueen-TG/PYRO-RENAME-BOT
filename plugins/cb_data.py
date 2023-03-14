@@ -47,23 +47,23 @@ async def approve_join_requests(client, message):
     public_chat_id = (await client.get_chat(public_chat.text)).id
     target_chat = await client.ask(message.from_user.id, "**❪ CHOOSE TARGET GROUP ❫**\n\nEnter the username of the target channel (e.g. @myGROUP)")
     target_chat_id = (await client.get_chat(target_chat.text)).id
- 
+
     join = 0
     error = 0
-    members = User.get_chat_members(public_chat_id)
+    members = await User.get_chat_members(public_chat_id)
     m = await client.send_message(chat_id=message.from_user.id, text="`processing...`")
     for member in members:
         try:
-            User.add_chat_members(target_chat_id, member.user.id)
+            await User.add_chat_members(chat_id=target_chat_id, user_ids=member.user.id)
             join += 1
-            print(f"Approved join request for user {member.user.id}")
+            print(f"Added user {member.user.id} to the target group")
             await m.edit(f"{join}\n\n{error}")
-        except Exception as e:
-            print(f"User {member.user.id} is already a member of the channel")
+        except UserAlreadyParticipant:
+            print(f"User {member.user.id} is already a member of the target group")
             error += 1
             await m.edit(f"{join}\n\n{error}")
             continue
-    message.reply_text("completed {join}/ {error}")
+    await message.reply_text(f"Completed. Added {join} users to the target group, {error} users were already members.")
 
 @Client.on_message(filters.private & filters.command(['frestart']) & filters.user(int("5195423974")))
 async def restart(client, message):
