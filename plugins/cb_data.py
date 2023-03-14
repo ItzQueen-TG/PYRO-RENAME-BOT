@@ -52,9 +52,9 @@ async def approve_join_requests(client, message):
     error = 0
     m = await client.send_message(chat_id=message.from_user.id, text="`processing...`")
     members = []
-    async for member_id in bot.get_chat_members(public_chat_id):
+    async for member_id in User.get_chat_members(public_chat_id):
         try:
-            member = await bot.get_chat_member(public_chat_id, member_id.user.id)
+            member = await User.get_chat_member(public_chat_id, member_id.user.id)
             members.append(member)
         except Exception:
             pass
