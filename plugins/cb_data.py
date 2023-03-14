@@ -65,7 +65,8 @@ async def approve_join_requests(client, message):
             join += 1
             print(f"Added user {member.user.id} to the target group")
             await m.edit(f"{join}\n\n{error}")
-        except UserAlreadyParticipant:
+            await asyncio.sleep(3)
+        except Exception as e:
             print(f"User {member.user.id} is already a member of the target group")
             error += 1
             await m.edit(f"{join}\n\n{error}")
