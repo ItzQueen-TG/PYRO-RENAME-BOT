@@ -4,6 +4,7 @@ from aiohttp import web
 from route import web_server
 from main import User
 from plugins.cb_data import R_LOG
+from pyromod import listen
 
 Bot = Client(
         "Renamer",
