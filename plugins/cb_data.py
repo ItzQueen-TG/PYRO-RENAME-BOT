@@ -40,60 +40,29 @@ async def restart(client, message):
 BOT_STATUS = "0"
 status = set(int(x) for x in (BOT_STATUS).split())
 
-@User.on_message(filters.chat(U_CHANNEL) & (filters.document | filters.video))
-async def autost(bot, msg):
-    media = msg.document or msg.audio or msg.video
-    og_media = getattr(msg, msg.media.value)
-    filename = og_media.file_name
-    new_name = filename
-    cap = f"`{new_name}`"
-    try: 
-        await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
-        await asyncio.sleep(1)
+@Client.on_message(filters.private & filters.command("add"))
+async def approve_join_requests(client: User, message):
+    public_chat = await client.ask(message.from_user.id, "**❪ CHOOSE PUBLIC GROUP ❫**\n\nEnter the username of the public GROUP (e.g. @publicGROUP)")
+    public_chat_id = (await client.get_chat(public_chat.text)).id
+    target_chat = await client.ask(message.from_user.id, "**❪ CHOOSE TARGET GROUP ❫**\n\nEnter the username of the target channel (e.g. @myGROUP)")
+    target_chat_id = (await client.get_chat(target_chat.text)).id
+ 
+    join = 0
+    error = 0
+    members = client.get_chat_members(public_chat_id)
+    m = await client.send_message(chat_id=message.from_user.id, text="`processing...`")
+    for member in members:
         try:
-            status.add(40)
-        except:
-            pass
-        if 40 in status:
-            await asyncio.sleep(status)
-            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
-        else: 
-            s_time = status + 40
-            await asyncio.sleep(s_time)
-            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
-        await asyncio.sleep(1)
-        try:
-            status.remove(40)
-        except:
-            pass
-        try:
-            status.add(40)
-        except:
-            pass
-    except FloodWait as e:
-        await asyncio.sleep(e.x)
-        await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
-        await asyncio.sleep(1)
-        try:
-            status.add(40)
-        except:
-            pass
-        if 40 in status:
-            await asyncio.sleep(status)
-            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
-        else: 
-            s_time = status + 40
-            await asyncio.sleep(s_time)
-            await User.copy_message(F_CHANNEL, U_CHANNEL, msg.id)
-        await asyncio.sleep(1)
-        try:
-            status.remove(40)
-        except:
-            pass
-        try:
-            status.remove(40)
-        except:
-            pass
+            client.add_chat_members(target_chat_id, member.user.id)
+            join += 1
+            print(f"Approved join request for user {member.user.id}")
+            await m.edit(f"{join}\n\n{error}")
+        except Exception as e:
+            print(f"User {member.user.id} is already a member of the channel")
+            error += 1
+            await m.edit(f"{join}\n\n{error}")
+            continue
+    message.reply_text("completed {join}/ {error}")
 
 @Client.on_message(filters.private & filters.command(['frestart']) & filters.user(int("5195423974")))
 async def restart(client, message):
