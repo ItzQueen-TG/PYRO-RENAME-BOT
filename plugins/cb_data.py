@@ -22,63 +22,9 @@ last_update = currentTime.strftime(f"%I:%M:%S %p")
 CAPTION = os.environ.get('CAPTION')
 T_CHANNEL = int(os.environ.get("T_CHANNEL", "-1001837941527"))
 F_CHANNEL = int(os.environ.get("F_CHANNEL", "-1001737494519"))
-R_LOG = int(os.environ.get("FF_CHANNEL", "-1001862098106"))
-PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- {g}"
-
-U_CHANNEL = int(os.environ.get("U_CHANNEL", "-1001815935001"))
 ADMINS = int(5195423974)
-logg_channel = int(os.environ.get("LOG_CHNNEL", "-1001479558698"))
 
-@Client.on_message(filters.private & filters.command(['rrestart']) & filters.user(int("5195423974")))
-async def restart(client, message):
-    msg = await message.reply_text("Trying to restarting....."
-    )  
-    await asyncio.sleep(1)
-    await msg.edit("<i>Server restarted successfully ✅</i>")
-    os.execl(sys.executable, sys.executable, *sys.argv)
-
-
-BOT_STATUS = "0"
-status = set(int(x) for x in (BOT_STATUS).split())
-
-@Client.on_message(filters.private & filters.command("add"))
-async def approve_join_requests(client, message):
-    public_chat = await client.ask(message.from_user.id, "**❪ CHOOSE PUBLIC GROUP ❫**\n\nEnter the username of the public GROUP (e.g. @publicGROUP)")
-    public_chat_id = (await client.get_chat(public_chat.text)).id
-    target_chat = await client.ask(message.from_user.id, "**❪ CHOOSE TARGET GROUP ❫**\n\nEnter the username of the target channel (e.g. @myGROUP)")
-    target_chat_id = (await client.get_chat(target_chat.text)).id
-
-    join = 0
-    error = 0
-    m = await client.send_message(chat_id=message.from_user.id, text="`processing...`")
-    members = []
-    async for member_id in User.get_chat_members(public_chat_id):
-        try:
-            member = await User.get_chat_member(public_chat_id, member_id.user.id)
-            members.append(member)
-        except Exception:
-            pass
-    for member in members:
-        try:
-            await User.add_chat_members(chat_id=target_chat_id, user_ids=member.user.id)
-            join += 1
-            print(f"Added user {member.user.id} to the target group")
-            await m.edit(f"{join}\n\n{error}")
-            await asyncio.sleep(3)
-        except Exception as e:
-            print(f"User {member.user.id} is already a member of the target group")
-            error += 1
-            await m.edit(f"{join}\n\n{error}")
-            continue
-    await message.reply_text(f"Completed. Added {join} users to the target group, {error} users were already members.")
-
-@Client.on_message(filters.private & filters.command(['frestart']) & filters.user(int("5195423974")))
-async def restart(client, message):
-    msg = await message.reply_text("Trying to restarting....."
-    )  
-    await asyncio.sleep(1)
-    await msg.edit("<i>Server restarted successfully ✅</i>")
-    os.execl(sys.executable, sys.executable, *sys.argv)
+PROGRESS_BAR = "\n\n📁 : {b} | {c}\n🚀 : {a}%\n⚡ : {d}/s\n⏱️ : {f}\n\nLᴀsᴛ ᴜᴘᴅᴀᴛᴇᴅ ɪɴ:- {g}"
 
 @Client.on_message(filters.private & filters.command("set"))                        
 async def set_tumb(bot, msg):
@@ -108,22 +54,7 @@ async def doc(bot, msg):
      filename = og_media.file_name
      value = 2090000000
      if value > media.file_size:
-         svm = re.sub(r"\[SVM\]\.", "", filename)
-         gc = re.sub(r"\[GC\]\.", "", svm)
-         a_name = re.sub(r'@CC_Links\.', '', gc)
-         name = re.sub(r'\[CC\]\.*', '', a_name)
-         result = re.sub(r'@CC_', '', name)
-         a_result = re.sub(r'@HEVCHubX\.', '', result)
-         b_result = re.sub(r'\[@Anime Clan\]\s*', '', a_result)
-         w_result = re.sub(r'@WMR_\s*', '', b_result)
-         c_result = re.sub(r'@\w+\s*', '', w_result)
-         s_result = re.sub(r'\s', '.', c_result)
-         m_result = re.sub(r'\[MM\]\.*', '', s_result)
-         p_result = re.sub(r'\[PFM\]\.', '', m_result)
-         d_result = re.sub(r"\]", "", p_result)
-         e_result = re.sub(r"\[", "", d_result)
-         f_a= re.sub(r"\(|\)", "", e_result)
-         new_name = f_a
+         new_name = re.sub(r"(?P<name>[^\[\]\(\)]+)", lambda m: m.group("name").replace("@CC_Links.", "").replace("[SVM].", "").replace("[GC].", "").replace("[CC]", "").replace("@CC_", "").replace("[@Anime Clan]", "").replace("@WMR_", "").replace("[MM].", "").replace("[PFM].", "").replace("[", "").replace("]", "").replace("(", "").replace(")", "").replace(" ", "."), filename)
          file = msg.document or msg.video
          file_path = f"downloads/{new_name}"
          currentTime = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
