@@ -16,17 +16,7 @@ Bot = Client(
         sleep_threshold=15,
         )
        
-if STRING:
-    apps = [User,Bot]
-    for app in apps:
-        app.start()
-        print("๏[-ิ_•ิ]๏ bot and user restarted ! ⚡")
-    idle()
-    for app in apps:
-        app.stop()
-        print("bot Down💔")
 
-else:
-    bot=Bot()
-    bot.run()
-    print("๏[-ิ_•ิ]๏ bot restarted ! ⚡")
+ bot=Bot()
+ bot.run()
+ print("๏[-ิ_•ิ]๏ bot restarted ! ⚡")
