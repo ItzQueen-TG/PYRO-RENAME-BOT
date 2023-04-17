@@ -13,7 +13,6 @@ from pyrogram import Client, filters, enums
 from pyrogram.types import *
 from pyrogram.errors import FloodWait
 from config import temp
-from main import User
 
 currentTime = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 last_update = currentTime.strftime(f"%I:%M:%S %p")
