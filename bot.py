@@ -1,9 +1,7 @@
 from pyrogram import Client, compose, idle
-from config import API_ID, API_HASH, BOT_TOKEN, STRING, PORT
+from config import API_ID, API_HASH, BOT_TOKEN
 from aiohttp import web
 from route import web_server
-from main import User
-from plugins.cb_data import R_LOG
 from pyromod import listen
 
 Bot = Client(
