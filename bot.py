@@ -15,6 +15,6 @@ Bot = Client(
         )
        
 
- bot=Bot()
- bot.run()
- print("๏[-ิ_•ิ]๏ bot restarted ! ⚡")
+bot=Bot()
+bot.run()
+print("๏[-ิ_•ิ]๏ bot restarted ! ⚡")
